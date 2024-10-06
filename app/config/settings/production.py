@@ -10,7 +10,7 @@ CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=True)
 SESSION_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE=True", default=True)
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 try:
     from .local import *

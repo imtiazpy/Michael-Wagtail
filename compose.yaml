@@ -7,8 +7,8 @@ services:
     volumes:
       - static_volume:/usr/src/app/staticfiles
       - media_volume:/usr/src/app/mediafiles
-    image: cms-img-prod:latest
-    container_name: cms-container-prod
+    image: wagtail-tag-img:latest
+    container_name: wagtail-tag-container
     expose:
       - 8000
     env_file:
@@ -17,7 +17,7 @@ services:
       - db
   db:
     image: postgres:15
-    container_name: cms-db-prod
+    container_name: wagtail-tag-db
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
@@ -29,7 +29,7 @@ services:
     - static_volume:/usr/src/app/staticfiles/
     - media_volume:/usr/src/app/mediafiles/
     image: nginx-img-prod:latest
-    container_name: nginx-proxy-prod
+    container_name: wagtail-tag-nginx-proxy
     ports:
       - 1337:80
     depends_on:

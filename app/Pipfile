@@ -8,6 +8,8 @@ wagtail = "~=5.2"
 django-environ = "*"
 whitenoise = "*"
 wagtail-tag-manager = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

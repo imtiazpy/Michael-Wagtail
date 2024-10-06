@@ -112,6 +112,55 @@ WTM_TAG_TYPES = {
 ```
 
 
+## You can run the project with or without Docker
+
+### Let's run it with Docker first
+#### Steps to follow:
+0. create .env.dev and .env.dev.db files in the root directory
+  - Copy the content in `.env.dev.sample` to `.env.dev`
+  - Copy the content in `.env.dev.db.sample` to `.env.dev.db`
+  - Change the value `changeme` to the relevant value in both of the files.
+
+1. Now from the root directory of the project run the following command:
+```bash
+docker compose up -d --build
+```
+
+Give it some time to copy, install, and run the project. After the containers spin up, wait for the migrations and collectstatic commands to complete. You can check the logs to confirm when the migrations and collectstatic are done by running the following command from the root directory:
+```bash
+docker compose logs -f
+```
+
+2. Then run the following command to create superuser:
+`docker compose exec web python manage.py createsuperuser` and provide value to the prompts to create the user.
+
+
+### Now let's run it without Docker
+#### Steps to follow:
+0. create .env file in the app directory
+  - Copy the content from `app/.env.sample` to `app/.env`
+1. Install Pipenv. Follow this instructions here if you are new to Pipenv -> [Pipenv](https://pipenv.pypa.io/en/latest/)
+2. Navigate to the app directory
+  - `cd app`
+3. Activate the virtual environment 
+  - From the app directory run `pipenv shell` (it activates the virtual environment)
+4. Installed the dependencies
+  - From the app directory run `pipenv install`
+5. Run the migrations
+  - From the app directory run `python manage.py migrate`
+6. Create Superuser
+  - From the app directory run `python manage.py createsuperuser`
+7. Start the server
+  - From the app directory run `python manage.py runserver`
+
+Note: 
+When using Pipenv, if you make any changes to the `.env` file, you need to exit the virtual environment and activate it again:
+  - To exit: run `exit` from the terminal
+  - To activate: run `pipenv shell` from the terminal
+
+
+
+
 
 
 
