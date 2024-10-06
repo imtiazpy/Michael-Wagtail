@@ -7,6 +7,7 @@ name = "pypi"
 wagtail = "~=5.2"
 django-environ = "*"
 whitenoise = "*"
+wagtail-tag-manager = "*"
 
 [dev-packages]
 

@@ -1,8 +1,11 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar wtm_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {# Top of head tag area #}
+        {% wtm_instant_tags 'top_head' %}
+        
         <meta charset="utf-8" />
         <title>
             {% block title %}
@@ -17,6 +20,7 @@
         <meta name="description" content="{{ page.search_description }}" />
         {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#712cf9">
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
@@ -25,26 +29,42 @@
 
         {# Bootstrap stylesheet #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-
+        <script type="text/javascript" src="{% static 'js/bootstrap/color_mode.js' %}"></script>
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/config.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/home_page.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
         {% endblock %}
+
+        {# Bottom of head tag area #}
+        {% wtm_instant_tags 'bottom_head' %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
+    <body class="{% block body_class %}{% endblock %} position-relative">
+        {# Top of body tag area #}
+        {% wtm_instant_tags 'top_body' %}
+        
+        {% comment %} {% wagtailuserbar %} {% endcomment %}
 
-        <header>
+        {# loading wtm lazy manager with style #}
+        {% wtm_lazy_manager include_style=True include_script=True %}
+
+        {% include "includes/theme_select.html" %}
+        <header class="container py-4 sticky-top">
             {% include "includes/_header.html" %}
         </header>
-        <main>
+        <main class="main">
             {% block content %}{% endblock %}
         </main>
         {% include "includes/_footer.html" %}
+
+        <div id="wtm-cookie-consent">
+            {% wtm_cookie_bar %}
+        </div>
 
 
         {# Bootstrap JavaScript #}
@@ -53,8 +73,16 @@
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/config.js' %}"></script>
 
+        <script>
+            const value = window.wtm.consent();
+            console.log("consent state: ",value);
+        </script>
+
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
         {% endblock %}
+        
+        {# Bottom of body tag area #}
+        {% wtm_instant_tags 'bottom_body' %}
     </body>
 </html>

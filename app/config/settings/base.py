@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "wagtail.contrib.settings" #To enable the cookie bar settings
 ]
 
 LOCAL_APPS = [
@@ -57,7 +58,8 @@ LOCAL_APPS = [
 ]
 
 SUPPORTING_APPS = [
-
+    "wagtail_modeladmin",
+    "wagtail_tag_manager"
 ]
 
 INSTALLED_APPS += LOCAL_APPS + SUPPORTING_APPS
@@ -73,6 +75,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "wagtail_tag_manager.middleware.CookieConsentMiddleware",
+    # 'wagtail_tag_manager.middleware.TagManagerMiddleware', # optional 
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -90,6 +94,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail_tag_manager.context_processors.consent_state",
             ],
         },
     },
@@ -188,3 +193,22 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
+
+# ============Wagtail Tag Manager Specific===============
+WTM_INJECT_TAGS = False #Keep False if using template tags to load the tags
+WTM_INJECT_SCRIPT = False #Keep False if using template tags to load the tags
+
+
+WTM_SUMMARY_PANELS = True #to add the summary in the admin panel
+
+WTM_MANAGE_VIEW = True #add manage settings route to the consent bar
+
+
+# This is the builtin Tag Types Dictionary, To add more types update the Dictionary
+WTM_TAG_TYPES = {
+    # key, verbose name, setting
+    "necessary": ("Necessary", "required"),
+    "preferences": ("Preferences", "initial"),
+    "statistics": ("Statistics", "initial"),
+    "marketing": ("Marketing", ""),
+}
