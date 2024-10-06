@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 LOCAL_APPS = [
     "home",
     "search",
+    "tag_manager"
 ]
 
 SUPPORTING_APPS = [

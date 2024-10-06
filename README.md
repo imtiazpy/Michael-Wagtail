@@ -105,6 +105,12 @@ WTM_TAG_TYPES = {
 }
 ```
 
+### Consent states can also be checked with the following value when the context processor setting is enabled
+```html
+{{ wtm_consent_state.necessary }} {{ wtm_consent_state.preferences }} 
+{{ wtm_consent_state.statistics }} {{ wtm_consent_state.marketing }}
+```
+
 
 
 
