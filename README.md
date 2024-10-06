@@ -32,12 +32,60 @@ Triggers allow you to define specific events in the browser that will activate a
 4. Once the trigger is set up, you can assign it to one or more tags.
 
 ### 4. Create Cookie Declarations for User Transparency
-To comply with privacy regulations and provide transparency to your users, WTM allows you to create cookie declarations that inform users about the tracking taking place on the site. 
+To comply with privacy regulations and provide transparency to your users, WTM allows you to create cookie declarations that inform users about the tracking taking place on the site. These Cookie declarations will be in the Cookie Consent bar for the Visitors to see.
 Please check this documentation for a better understanding of the regulations: [ePrivacy Regulation](https://digital-strategy.ec.europa.eu/en/policies/eprivacy-regulation).
 
 #### Steps to Create Cookie Declarations:
 1. Go to **Tag Manager > Cookie Declarations**.
 2. Click **Add cookie declaration** and fill in the necessary information about the cookies being used.
 3. These declarations can be displayed in your cookie consent banner, giving users full visibility into the tracking and scripts on your site.
+
+
+### 5. Customize the Title and Text Displayed in the Cookie Consent Bar
+If you would like to modify the title and text that appears in the cookie consent bar so that it aligns with your site's tone and messaging, you can do that.
+
+#### Steps to Customize the Cookie Bar:
+1. Navigate to Settings > Cookie bar settings in the Wagtail admin panel.
+2. From there, you can adjust the title and modify the text displayed in the cookie consent banner.
+3. Save your changes, and the updated consent bar will be visible to users.
+
+
+
+## For Developers
+
+### We(Developer) can add resources (HTML/CSS/JS) based on the consent states of any consent type.
+#### Some examples are shown below:
+
+```html
+{% wtm_include "preferences" %}
+  <script>
+    console.log("Included conditionally");
+  </script>
+{% wtm_endinclude %}
+
+
+{% wtm_include "marketing" %}
+  <div>
+    Hello, I have been given permission to be displayed based on marketing consent.
+  </div>
+{% wtm_endinclude %}
+```
+
+### WTM Tag types
+### By default there are 4 types
+#### To add new types add new item in the following Dictionary
+
+``WTM_TAG_TYPES = {
+    # key, verbose name, setting
+    "necessary": (_("Necessary"), "required"),
+    "preferences": (_("Preferences"), "initial"),
+    "statistics": (_("Statistics"), "initial"),
+    "marketing": (_("Marketing"), ""),
+}``
+
+
+
+
+
 
 

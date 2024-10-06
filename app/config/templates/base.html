@@ -50,9 +50,6 @@
         
         {% comment %} {% wagtailuserbar %} {% endcomment %}
 
-        {# loading wtm lazy manager with style #}
-        {% wtm_lazy_manager include_style=True include_script=True %}
-
         {% include "includes/theme_select.html" %}
         <header class="container py-4 sticky-top">
             {% include "includes/_header.html" %}
@@ -77,6 +74,9 @@
             const value = window.wtm.consent();
             console.log("consent state: ",value);
         </script>
+
+        {# loading wtm lazy manager with style #}
+        {% wtm_lazy_manager %}
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}

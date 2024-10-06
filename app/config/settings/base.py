@@ -201,7 +201,7 @@ WTM_INJECT_SCRIPT = False #Keep False if using template tags to load the tags
 
 WTM_SUMMARY_PANELS = True #to add the summary in the admin panel
 
-WTM_MANAGE_VIEW = True #add manage settings route to the consent bar
+WTM_MANAGE_VIEW = False
 
 
 # This is the builtin Tag Types Dictionary, To add more types update the Dictionary
