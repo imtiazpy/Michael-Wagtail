@@ -196,7 +196,9 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 
 # ============Wagtail Tag Manager Specific===============
 WTM_INJECT_TAGS = False #Keep False if using template tags to load the tags
-WTM_INJECT_SCRIPT = False #Keep False if using template tags to load the tags
+
+#expose the window.wtm.consent() function (retrieve the current consent state and information from the wtm cookie)
+WTM_INJECT_SCRIPT = True
 
 
 WTM_SUMMARY_PANELS = True #to add the summary in the admin panel

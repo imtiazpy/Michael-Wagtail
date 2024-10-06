@@ -73,15 +73,38 @@ If you would like to modify the title and text that appears in the cookie consen
 
 ### WTM Tag types
 ### By default there are 4 types
-#### To add new types add new item in the following Dictionary
+#### To add new types, add items in the following Dictionary
 
-``WTM_TAG_TYPES = {
+```python
+WTM_TAG_TYPES = {
     # key, verbose name, setting
     "necessary": (_("Necessary"), "required"),
     "preferences": (_("Preferences"), "initial"),
     "statistics": (_("Statistics"), "initial"),
     "marketing": (_("Marketing"), ""),
-}``
+    "new": (_("New"), "")
+}
+```
+
+### When WTM_INJECT_SCRIPT is set to True, it exposes the `window.wtm.consent()` function.
+#### The function will retrieve the current consent state and information from the wtm cookie
+
+```json
+{
+  "meta": {
+    "id": "b402114a-352f-488f-8481-834cd91a1b2b",
+    "refresh_timestamp": 1694520568.531865,
+    "set_timestamp": 1694520573.685324
+  },
+  "state": {
+    "marketing": "false",
+    "necessary": "true",
+    "preferences": "true",
+    "statistics": "true"
+  }
+}
+```
+
 
 
 

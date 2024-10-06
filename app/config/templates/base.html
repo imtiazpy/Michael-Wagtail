@@ -64,6 +64,9 @@
         </div>
 
 
+        {# loading wtm lazy manager with style #}
+        {% wtm_lazy_manager %}
+
         {# Bootstrap JavaScript #}
         <script type="text/javascript" src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 
@@ -74,9 +77,6 @@
             const value = window.wtm.consent();
             console.log("consent state: ",value);
         </script>
-
-        {# loading wtm lazy manager with style #}
-        {% wtm_lazy_manager %}
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
